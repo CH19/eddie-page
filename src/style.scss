@@ -9,6 +9,7 @@ body{
   height: 100vh;
   display: grid;
   place-items: center;
+  // background-color: red;
 }
 h2{
   font-weight: 600;
@@ -165,7 +166,8 @@ p{
       $i: $i + 1;
     }
     .service{
-      padding: 1.5em;
+      margin: 0;
+      padding: 10px;
       @include variables.neo($neo: 10px);
       ion-icon{
         padding: 5px;
@@ -193,8 +195,63 @@ p{
     }
   }
 }
+.desing{
+  width: 100vw;
+  & >  button:last-of-type{
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    width: 7em;
+    align-items: center;
+    padding: 5px;
+    border-radius: 10px;
+    a{
+      color: variables.$blue  ;
+      text-decoration: none;
+    }
+    &:hover{
+      cursor: pointer;
+      background-color: variables.$blue;
+      transition: all .5s ease-in;
+      a{
+        color: variables.$white;
+        transition: all .5s ease-in;
+
+      }
+    }
+  }
+}
+// Products 
+.proudct-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  width: 100vw;
+  gap: .5em;
+  .desing-content{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h3{
+      width: fit-content ;
+      display: inline;
+    }
+  }
+  .proudct{
+    figure{
+      margin: 0;
+      @include variables.largeImage($largo: 95vw);
+      img{
+        border-radius: 20px;
+      }
+    }
+  }
+}
 
 // medita queris 
+
 @media screen and (min-width: 600px) {
   .nav-mobile{
     display: none;
@@ -230,15 +287,32 @@ p{
 
     }
   }
+  .desing{
+    & button:last-of-type{
+      position: absolute;
+      right: 0;
+      margin-right: 2em;
+    }
+  }
+  .proudct-container{
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    .proudct{
+      display: flex;
+      flex-flow: column wrap;
+      p, h3{
+        align-self: flex-start;
+      }
+      figure{
+        @include variables.largeImage($largo: 80%);
+      }
+    }
+  }
+  .proudct:nth-child(odd){
+    position: relative;
+    top: 4em;
+  }
 }
-// button{
-//   background-color: variables.$buttonColor;
-//   border: none;
-//   cursor: pointer;
-//   padding: 6px;
-//   &:hover{
-//     opacity: 70%;
-//     padding: 8px;
-//     transition: all .7s ease-in-out;
-//   }
-// }
