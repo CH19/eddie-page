@@ -1,0 +1,244 @@
+@use './variables.scss';
+body{
+  // background-color: variables.$black;
+  // color: variables.$white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 90vw;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+h2{
+  font-weight: 600;
+}
+p{
+  font-size: .8em;
+}
+.nav{
+  background-color: variables.$white;
+  margin: 0;
+  padding: 0;
+  // position: fixed;
+  top: 0;
+}
+.nav-mobile{
+ @include variables.flexi();
+  .mobile-menu{
+    font-size: 1.5em;
+    cursor: pointer;
+    &:hover{
+      opacity: 80%;
+      font-size: 1.6em;
+      transition: all .5s ease-in-out;
+    }
+  }
+
+  .options{
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+    right: 0;
+    height: 100vh;
+    z-index: 100;
+    color: variables.$white;
+    background-color:variables.$blue ;
+    transform: translateX(100%);
+    transition: transform 1s ease-in-out;
+    ion-icon{
+      font-size: 2em ;
+      cursor: pointer;
+      border-radius: 20px;
+      box-shadow: 0 0 2px 2px variables.$black;
+      &:hover{
+        font-size: 2.1em;
+        transition: all 1s ease-in;
+      }
+    }      
+    ul{
+      z-index: 300;
+      list-style: none;
+      display: flex;
+      flex-flow: column wrap;
+      gap: 10px;
+      li{
+        @include variables.buttonThing()
+        }
+        
+      }
+    }
+  }
+
+
+.active{
+  transform: translateX(0%) !important;
+  transition: all 1s ease-in-out;
+}
+
+
+.nav-web{
+  display: none;
+}
+
+// Comenzando con el componente del header 
+
+.header{
+  p{
+    color: variables.$blue;
+  }
+  h2{
+    font-weight: 600;
+  }
+  figure{
+    @include variables.largeImage($largo: 100%, $fiti: fill);
+    margin: 0;
+    height: 120px;
+    img{
+      border-radius: 10px;
+
+    }
+  }
+}
+
+//emotion component
+.emotion{
+  margin-top: 1rem;
+  p{
+    color: variables.$gray;
+  }
+  form{
+    display: grid;
+    grid-template-columns: 1fr 4em;
+    gap: 5px;
+    color: variables.$gray;
+    label{
+      font-size: .6em;
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 1;
+    }
+    input[type="email"]{
+      grid-column-start: 1; 
+      grid-row-start: 2;
+      grid-column-end: 1;
+      grid-row-end: 2;
+      outline: none;
+      background-color: variables.$white2;
+      border: solid 1px variables.$gray;
+      &:active{
+        outline: none;
+      }
+      &:focus{
+        
+        box-shadow: 0 0 5px 2px variables.$black;
+      }
+    }
+    input[type="submit"]{
+      grid-row-start: 2;
+      grid-column-start: 2;
+      background-color: variables.$blue;
+      color: variables.$white;
+      border: 1px solid variables.$blue;
+      padding: 5px;
+      border-radius: 2px;
+      &:hover{
+        opacity: 70%;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.services{
+  .services-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+    $i: 1;
+    @while $i < 4{
+      .services#{$i}{
+        ion-icon{
+          background-color: map-get($map: variables.$servicesColor, $key: "color" + $i );
+        }
+      }
+      $i: $i + 1;
+    }
+    .service{
+      padding: 1.5em;
+      @include variables.neo($neo: 10px);
+      ion-icon{
+        padding: 5px;
+          color: variables.$white;
+          font-size: 1.5em;
+          border-radius: 5px;
+          font-weight: bold;
+      }
+      p{
+        width: 300px;
+      } 
+      button{
+        background-color: variables.$white2;
+        color: variables.$gray;
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        &:hover{
+          background-color: variables.$blue;
+          color: variables.$white;
+          transition: all .5s ease-in;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+// medita queris 
+@media screen and (min-width: 600px) {
+  .nav-mobile{
+    display: none;
+  }
+  .nav-web{
+    @include variables.flexi();
+    ul{
+      @include variables.flexi($whidth: 30em);
+      list-style: none;
+      @include variables.buttonThing($color: variables.$black)
+
+    }
+  }
+  .header{
+    figure{
+      @include variables.largeImage($largo: 95vw, $fiti: fill);
+      margin: 0;
+
+      height: 220px;
+    }
+  }
+  .emotion{
+    position: relative;
+    left: -4em;
+    p{
+      width: 18em;
+
+    }
+  }
+  .services{
+    .services-container{
+      grid-template-columns: repeat(3, minmax(300px, 1fr));
+
+    }
+  }
+}
+// button{
+//   background-color: variables.$buttonColor;
+//   border: none;
+//   cursor: pointer;
+//   padding: 6px;
+//   &:hover{
+//     opacity: 70%;
+//     padding: 8px;
+//     transition: all .7s ease-in-out;
+//   }
+// }

@@ -1,0 +1,58 @@
+$white: #FFF;
+$white2: #f2f2f2;
+$black: #070707;
+$blue:  #2d9cdb;
+$red: #eb5757;
+$green: #27ae60;
+$buttonColor: crimson;
+$gray: #4f4f4f;
+$servicesColor: (
+    "color1": $blue,
+    "color2": $red,
+    "color3": $green,
+) ;
+
+@mixin flexi($whidth: 90vw){
+    display: flex;
+    flex-flow: row nowrap;
+    width: $whidth;
+    align-items: center;
+    justify-content: space-between;
+}
+@mixin buttonThing($color: $white){
+    button{
+        border: none;
+        background: transparent;
+        border: transparent solid 1px;
+        a{
+          color: $color;
+          text-decoration: none;
+          font-size: 1.2em;
+        }
+        &:hover{
+            border: $color solid 1px;
+            transition: border .3s ease-in;
+        }
+    }
+}
+@mixin WHMax($large: 100%){
+    width: $large;
+    height: $large;
+}
+@mixin largeImage($largo: 100%, $fiti: cover){
+    // el elemento de este mixin debe ser el contenedor de una imagen 
+    @include WHMax($large: $largo);
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: $fiti;
+    }
+}
+@mixin neo($raiuds: 20px, $neo: 2em){
+    $color: #e0e0e0;
+    border-radius: $raiuds;
+    background-color: $color;
+    box-shadow: $neo $neo ($neo*2) $color,
+        (-$neo) (-$neo) ($neo*2) #FFF 
+    ;
+}
