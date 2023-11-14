@@ -6,6 +6,7 @@ $red: #eb5757;
 $green: #27ae60;
 $buttonColor: crimson;
 $gray: #4f4f4f;
+$size: 1em;
 $servicesColor: (
     "color1": $blue,
     "color2": $red,
@@ -49,10 +50,10 @@ $servicesColor: (
     }
 }
 @mixin neo($raiuds: 20px, $neo: 2em){
-    $color: #e0e0e0;
+    $color: $white;
     border-radius: $raiuds;
     background-color: $color;
     box-shadow: $neo $neo ($neo*2) $color,
-        (-$neo) (-$neo) ($neo*2) #FFF 
+        (-$neo) (-$neo) ($neo*2) $white2
     ;
 }

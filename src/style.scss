@@ -159,10 +159,21 @@ p{
     $i: 1;
     @while $i < 4{
       .services#{$i}{
+        $newColor: map-get($map: variables.$servicesColor, $key: "color" + $i) ;
         ion-icon{
           background-color: map-get($map: variables.$servicesColor, $key: "color" + $i );
         }
+        // @if $newColor == variables.$blue{
+        //   color: aqua;
+        // }@else if $newColor == variables.$red{
+        //   background-color: beige;
+        //   box-shadow: inset 5px 20px 5px $newColor;
+        // }@else{
+        //   color: blue($color: #000000);
+        // }
+
       }
+       
       $i: $i + 1;
     }
     .service{
@@ -249,7 +260,45 @@ p{
     }
   }
 }
-
+.meetTeam{
+  .meetTeam-message{
+    margin-top: (variables.$size * 4);
+    display: flex;
+    flex-flow: column wrap;
+    @include variables.neo();
+    h5{
+      color: map-get($map: variables.$servicesColor, $key: "color2" );
+      font-size: (variables.$size * .8);
+    }
+    h2{
+      margin: 0;
+      padding: 0;
+    }
+    p{
+      font-size: (variables.$size * .8);
+      width: (variables.$size * 16);
+    }
+  }
+  .meetTeam-team{
+    background-color: red;
+    width: 100vw;
+    $images: (
+      "image1": url(./assets/edie-homepage-master/person1.png),
+      "image2": url(./assets/edie-homepage-master/person2.png),
+      "image3": url(./assets/edie-homepage-master/person3.png),
+    );
+    $number: 1;
+    @while $number < 4{
+      figure.person#{$number}{
+        @include variables.WHMax($large: 300px);
+        background-image: map-get($map: $images, $key: "image" + i );
+        background-size: 300px;
+        background-color: red;
+      }
+      $number: ($number + 1);
+    }
+  }
+}
 // medita queris 
 
 @media screen and (min-width: 600px) {

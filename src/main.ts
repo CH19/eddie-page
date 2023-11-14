@@ -2,7 +2,10 @@ import './style.scss'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts';
-import { change } from './menu.ts';
+import { change } from './menu.ts'; 
+import AOS from 'aos';
+import "../node_modules/aos/dist/aos.css";
+AOS.init();
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
