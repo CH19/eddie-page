@@ -23,7 +23,6 @@ p{
   background-color: variables.$white;
   margin: 0;
   padding: 0;
-  // position: fixed;
   top: 0;
 }
 .nav-mobile{
@@ -349,7 +348,7 @@ p{
   background-color: variables.$black2;
   min-width: 99vw;
   margin: 0;
-  padding: 10px 25px;
+  padding: 2em 1.6em;
   box-sizing: border-box;
   position: absolute;
   display: flex;
@@ -413,6 +412,21 @@ background: linear-gradient(0deg, rgba(249,206,52,1) 0%, rgba(232,31,114,1) 48%)
   }
   left: 0;
 }
+.creator{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  display: flex;
+
+  align-self: center;
+  justify-content: center;
+  gap: 5px;
+  a{
+    color: variables.$gray;
+  }
+}
 // medita queris 
 
 @media screen and (min-width: 600px) {
@@ -438,7 +452,7 @@ background: linear-gradient(0deg, rgba(249,206,52,1) 0%, rgba(232,31,114,1) 48%)
   }
   .emotion{
     position: relative;
-    left: -4em;
+    left: calc(1em * 12);
     p{
       width: 18em;
 
