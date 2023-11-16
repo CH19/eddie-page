@@ -1,15 +1,17 @@
 @use './variables.scss';
+$tamanno: 7.25em;
+
 body{
   // background-color: variables.$black;
   // color: variables.$white;
+  display: grid;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 90vw;
   display: grid;
-  place-items: center;
-  height: 100vh;
-  display: grid;
-  place-items: center;
+  gap: 2em;
+  place-items: start;
   // background-color: red;
+  height: 100vh;
 }
 h2{
   font-weight: 600;
@@ -25,7 +27,7 @@ p{
   top: 0;
 }
 .nav-mobile{
- @include variables.flexi();
+  @include variables.flexi();
   .mobile-menu{
     font-size: 1.5em;
     cursor: pointer;
@@ -57,18 +59,18 @@ p{
         transition: all 1s ease-in;
       }
     }      
-    ul{
-      z-index: 300;
-      list-style: none;
-      display: flex;
-      flex-flow: column wrap;
-      gap: 10px;
-      li{
-        @include variables.buttonThing()
-        }
-        
-      }
+  }
+}
+.options-ul{
+  z-index: 300;
+  list-style: none;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+  li{
+    @include variables.buttonThing()
     }
+    
   }
 
 
@@ -104,50 +106,49 @@ p{
 
 //emotion component
 .emotion{
-  margin-top: 1rem;
   p{
     color: variables.$gray;
   }
-  form{
-    display: grid;
-    grid-template-columns: 1fr 4em;
-    gap: 5px;
-    color: variables.$gray;
-    label{
-      font-size: .6em;
-      grid-column-start: 1;
-      grid-column-end: 2;
-      grid-row-start: 1;
-      grid-row-end: 1;
-    }
-    input[type="email"]{
-      grid-column-start: 1; 
-      grid-row-start: 2;
-      grid-column-end: 1;
-      grid-row-end: 2;
+}
+.emotion-contact{
+  display: grid;
+  grid-template-columns: 1fr 4em;
+  gap: 5px;
+  color: variables.$gray;
+  label{
+    font-size: .6em;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+  }
+  input[type="email"]{
+    grid-column-start: 1; 
+    grid-row-start: 2;
+    grid-column-end: 1;
+    grid-row-end: 2;
+    outline: none;
+    background-color: variables.$white2;
+    border: solid 1px variables.$gray;
+    &:active{
       outline: none;
-      background-color: variables.$white2;
-      border: solid 1px variables.$gray;
-      &:active{
-        outline: none;
-      }
-      &:focus{
-        
-        box-shadow: 0 0 5px 2px variables.$black;
-      }
     }
-    input[type="submit"]{
-      grid-row-start: 2;
-      grid-column-start: 2;
-      background-color: variables.$blue;
-      color: variables.$white;
-      border: 1px solid variables.$blue;
-      padding: 5px;
-      border-radius: 2px;
-      &:hover{
-        opacity: 70%;
-        cursor: pointer;
-      }
+    &:focus{
+      
+      box-shadow: 0 0 5px 2px variables.$black;
+    }
+  }
+  input[type="submit"]{
+    grid-row-start: 2;
+    grid-column-start: 2;
+    background-color: variables.$blue;
+    color: variables.$white;
+    border: 1px solid variables.$blue;
+    padding: 5px;
+    border-radius: 2px;
+    &:hover{
+      opacity: 70%;
+      cursor: pointer;
     }
   }
 }
@@ -261,8 +262,11 @@ p{
   }
 }
 .meetTeam{
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column wrap;
+  width: 90vw;
   .meetTeam-message{
-    margin-top: (variables.$size * 4);
     display: flex;
     flex-flow: column wrap;
     @include variables.neo();
@@ -280,24 +284,134 @@ p{
     }
   }
   .meetTeam-team{
-    background-color: red;
-    width: 100vw;
-    $images: (
-      "image1": url(./assets/edie-homepage-master/person1.png),
-      "image2": url(./assets/edie-homepage-master/person2.png),
-      "image3": url(./assets/edie-homepage-master/person3.png),
-    );
-    $number: 1;
-    @while $number < 4{
-      figure.person#{$number}{
-        @include variables.WHMax($large: 300px);
-        background-image: map-get($map: $images, $key: "image" + i );
-        background-size: 300px;
-        background-color: red;
+    display: grid;
+    place-items: center;
+    grid-template-areas: 
+    "person3 person1"
+    "person3 person2"
+      ;
+    width: 50vw;
+      $number: 1;
+      @while $number < 4{
+        figure.person#{$number}{
+        @include variables.WHMax($large: ($tamanno * 1.2));
+        background-image: url(./assets/edie-homepage-master/person#{$number}.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        padding: 4px;
+        margin: ($tamanno *.15);
+        @include variables.neo();
+        @if($number == 3){
+          grid-area: person3;
+          align-self: center;
+        }@else if($number == 2){
+          @include variables.WHMax($large: ($tamanno));
+          grid-area: person2;
+        }@else if($number == 1){
+          @include variables.WHMax($large: calc($tamanno / 1.2)) ;
+          grid-area: person1;
+        }
       }
       $number: ($number + 1);
     }
   }
+}
+.message{
+  display: flex;
+  flex-flow: column wrap;
+  h3{
+    color: variables.$gray;
+    font-weight: 700;
+    max-width: 400px;
+  }
+  .message-porfile{
+    display: flex;
+    flex-flow: row nowrap;
+    figure{
+      @include variables.largeImage($largo: 70px);
+      img{
+        @include variables.neo();
+      }
+    }
+    & > div:first-of-type{
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      font-size: calc(variables.$size * .8);
+      h2{
+        margin: 0;
+      }
+    }
+  }
+}
+.footer{
+  color: variables.$white;
+  background-color: variables.$black2;
+  min-width: 99vw;
+  margin: 0;
+  padding: 10px 25px;
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-flow: column wrap;
+  ul{
+    @extend .options-ul;
+    padding-left: 0;
+  }
+  .social-media{
+    display: flex;
+    flex-flow: column wrap;
+    .icons{
+      $index: 1;
+      ion-icon{
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1em;
+        padding: 6px;
+      }
+      @while $index < 4{
+        ion-icon:nth-child(#{$index}){
+          &:hover{
+            @if($index == 1){
+              background: rgb(249,206,52);
+background: linear-gradient(0deg, rgba(249,206,52,1) 0%, rgba(232,31,114,1) 48%);
+            }@else{
+              background-color: variables.$blue;
+            }
+            color: variables.$white;
+            border-radius: 10px;
+            transition: all 1s ease-in-out;
+          }
+        $index: calc($index + 1);
+        }
+      }
+    }
+  }
+  .emotion-contact{
+    display: flex;
+    flex-flow: column wrap;
+    width: 30px;
+    margin-top: 1em;
+    label{
+      height: 20px;
+
+    }
+    div:first-of-type{
+      display: flex;
+      width: fit-content;
+      padding: .5em;
+      border-radius: 20px;
+      background-color: variables.$white2;
+      input[type="email"]{
+        border: none;
+      }
+      input[type="submit"]{
+        border-radius: 20px;
+      }
+      
+    }
+  }
+  left: 0;
 }
 // medita queris 
 
@@ -363,5 +477,15 @@ p{
   .proudct:nth-child(odd){
     position: relative;
     top: 4em;
+  }
+  .meetTeam{
+    flex-flow: row nowrap;
+    $tamanno: 16.75em;
+    .meetTeam-team{
+    }
+  }
+  .footer{
+    flex-flow: row nowrap;
+    justify-content: space-evenly;    
   }
 }

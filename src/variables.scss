@@ -1,12 +1,14 @@
 $white: #FFF;
 $white2: #f2f2f2;
 $black: #070707;
+$black2: #100e1d;
 $blue:  #2d9cdb;
 $red: #eb5757;
 $green: #27ae60;
 $buttonColor: crimson;
 $gray: #4f4f4f;
 $size: 1em;
+$tamanno: 5em;
 $servicesColor: (
     "color1": $blue,
     "color2": $red,
@@ -49,7 +51,7 @@ $servicesColor: (
         object-fit: $fiti;
     }
 }
-@mixin neo($raiuds: 20px, $neo: 2em){
+@mixin neo($raiuds: 20px, $neo: 3em){
     $color: $white;
     border-radius: $raiuds;
     background-color: $color;
